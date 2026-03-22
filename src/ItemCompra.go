@@ -6,5 +6,5 @@ type ItemCompra struct {
 }
 
 func (i ItemCompra) PrecioPorItem() float64 {
-	i.Producto.Precio * float64(i.Cantidad)
+	return i.Producto.Precio * float64(i.Cantidad)
 }
