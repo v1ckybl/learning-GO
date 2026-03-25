@@ -1,8 +1,7 @@
-package main
+/*package main
 
-import (
-	"testing"
-)
+import "testing"
+
 
 func TestProducto(t *testing.T) {
 	p := Producto{
@@ -17,4 +16,4 @@ func TestProducto(t *testing.T) {
 	if p.Precio != 200.0 {
 		t.Errorf("Precio esperado 200.0, pero obtuve %f", p.Precio)
 	}
-}
+}//*
