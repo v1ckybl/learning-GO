@@ -1,5 +1,9 @@
 package main
 
+import (
+	"fmt"
+)
+
 type ProductoBase struct {
 	id     uint64
 	nombre string
@@ -14,4 +18,32 @@ func nuevoProductoBase(nombre string, precio float64, stock int) ProductoBase {
 		precio: precio,
 		stock:  stock,
 	}
+}
+
+func (p *ProductoBase) GetID() uint64 {
+	return p.id
+}
+
+func (p *ProductoBase) GetNombre() string {
+	return p.nombre
+}
+
+func (p *ProductoBase) GetPrecio() float64 {
+	return p.precio
+}
+
+func (p *ProductoBase) GetStock() int {
+	return p.stock
+}
+
+func (p *ProductoBase) EstaDisponible() bool {
+	return p.stock > 0
+}
+
+func (p *ProductoBase) DescontarStock(cantidad int) error {
+	if p.stock < cantidad {
+		return fmt.Errorf("stock insuficiente: disponible %d, pedido %d", p.stock, cantidad)
+	}
+	p.stock -= cantidad
+	return nil
 }
