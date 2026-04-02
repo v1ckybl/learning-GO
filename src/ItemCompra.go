@@ -1,4 +1,4 @@
-package main
+/*package main
 
 type ItemCompra struct {
 	Producto Producto
@@ -7,4 +7,4 @@ type ItemCompra struct {
 
 func (i ItemCompra) PrecioPorItem() float64 {
 	return i.Producto.Precio * float64(i.Cantidad)
-}
+}/*

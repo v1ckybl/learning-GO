@@ -4,7 +4,7 @@ import (
 	"fmt"
 )
 
-type ProductoBase struct {
+type ProductoBase struct { //clase abstracta que implementa la interfaz Producto, sirve como base para otros tipos de productos
 	id     uint64
 	nombre string
 	precio float64

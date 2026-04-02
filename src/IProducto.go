@@ -5,7 +5,7 @@ import (
 	"sync/atomic"
 )
 
-type Producto interface { //contrato que todo producto debe cumplir
+type IProducto interface { //contrato que todo producto debe cumplir
 	GetID() uint64
 	GetNombre() string
 	GetPrecio() float64
