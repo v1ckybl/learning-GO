@@ -1,11 +1,17 @@
 package main
 
-type Producto interface {
-	ID int
-	Nombre string
-	Precio float64
-	Stock int
-	Categoria string
+import (
+	"fmt"
+	"sync/atomic"
+)
+
+type Producto interface { //contrato que todo producto debe cumplir
+	GetID() uint64
+	GetNombre() string
+	GetPrecio() float64
+	GetStock() int
+	EstaDisponible() bool
+	DescontarStock(cantidad int) error
 }
 
 /*func (p Producto) HayStock(cantidad int) bool{
