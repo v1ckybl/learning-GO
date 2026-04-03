@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="RunManager">
+    <configuration name="TestIDsUnicosPorProducto in learning-go/Test" type="GoTestRunConfiguration" factoryName="Go Test" temporary="true" nameIsGenerated="true">
+      <module name="learning-GO" />
+      <working_directory value="$PROJECT_DIR$/Go-Todo/Test" />
+      <root_directory value="$PROJECT_DIR$/Go-Todo" />
+      <kind value="PACKAGE" />
+      <package value="learning-go/Test" />
+      <directory value="$PROJECT_DIR$" />
+      <filePath value="$PROJECT_DIR$" />
+      <framework value="gotest" />
+      <pattern value="^\QTestIDsUnicosPorProducto\E$" />
+      <method v="2" />
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Go Test.TestIDsUnicosPorProducto in learning-go/Test" />
+      </list>
+    </recent_temporary>
+  </component>
+</project>
