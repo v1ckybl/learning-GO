@@ -12,8 +12,12 @@ type ProductoBase struct { //clase abstracta que implementa la interfaz Producto
 }
 
 func nuevoProductoBase(nombre string, precio float64, stock int) ProductoBase {
+	return nuevoProductoBaseConGenerador(nombre, precio, stock, idGeneraaado)
+}
+
+func nuevoProductoBaseConGenerador(nombre string, precio float64, stock int, g *GenerarID) ProductoBase {
 	return ProductoBase{
-		id:     generarID(), // ID asignado automáticamente al construir
+		id:     g.generarID(),
 		nombre: nombre,
 		precio: precio,
 		stock:  stock,
