@@ -1,10 +1,15 @@
-/*package main
+package main
 
 type ItemCompra struct {
-	Producto Producto
-	Cantidad int
+	producto IProducto // uso de INTERFAZ como tipo
+	cantidad int
+	subtotal float64
 }
 
-func (i ItemCompra) PrecioPorItem() float64 {
-	return i.Producto.Precio * float64(i.Cantidad)
-}/*
+func newItem(p IProducto, cantidad int) ItemCompra {
+	return ItemCompra{
+		producto: p,
+		cantidad: cantidad,
+		subtotal: p.GetPrecio() * float64(cantidad),
+	}
+}
