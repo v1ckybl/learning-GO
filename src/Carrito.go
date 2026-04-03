@@ -5,23 +5,22 @@ import (
 	"strings"
 )
 
-
 type Carrito struct {
 	id        string
-	items     map[uint64]ItemCarrito // clave: ID único del producto
-	descuento float64                // porcentaje 0-100
+	items     map[uint64]ItemCompra // clave: ID único del producto
+	descuento float64               // porcentaje 0-100
 }
- 
-func NewCarrito(id string) *Carrito {
+
+func NewCompra(id string) *Carrito {
 	return &Carrito{
 		id:    id,
-		items: make(map[uint64]ItemCarrito),
+		items: make(map[uint64]ItemCompra),
 	}
 }
- 
+
 // MÉTODO: AgregarProducto
 // Go no tiene sobrecarga, pero podríamos agregar AgregarProductoConNota, etc.
-func (c *Carrito) AgregarProducto(p Producto, cantidad int) error {
+func (c *Carrito) AgregarProducto(p IProducto, cantidad int) error {
 	if !p.EstaDisponible() {
 		return fmt.Errorf("producto '%s' sin stock", p.GetNombre())
 	}
@@ -29,7 +28,7 @@ func (c *Carrito) AgregarProducto(p Producto, cantidad int) error {
 	if err != nil {
 		return err
 	}
- 
+
 	existente, existe := c.items[p.GetID()]
 	if existe {
 		existente.cantidad += cantidad
@@ -40,17 +39,17 @@ func (c *Carrito) AgregarProducto(p Producto, cantidad int) error {
 	}
 	return nil
 }
- 
+
 // MÉTODO: RemoverProducto — recibe el ID único del producto
 func (c *Carrito) RemoverProducto(id uint64) {
 	delete(c.items, id)
 }
- 
+
 // MÉTODO: AplicarDescuento
 func (c *Carrito) AplicarDescuento(porcentaje float64) {
 	c.descuento = porcentaje
 }
- 
+
 // MÉTODO: Total — calcula el total con descuento aplicado
 func (c *Carrito) Total() float64 {
 	subtotal := 0.0
@@ -59,12 +58,12 @@ func (c *Carrito) Total() float64 {
 	}
 	return subtotal * (1 - c.descuento/100)
 }
- 
+
 // MÉTODO: CantidadItems
 func (c *Carrito) CantidadItems() int {
 	return len(c.items)
 }
- 
+
 // MÉTODO: Resumen — genera texto descriptivo del carrito
 func (c *Carrito) Resumen() string {
 	var sb strings.Builder
@@ -79,25 +78,4 @@ func (c *Carrito) Resumen() string {
 	return sb.String()
 }
 
-
-
-
-
-
-
-/*type Carrito struct {
-	Items []ItemCompra
-}
-
-func (c *Carrito) AddItem(item ItemCompra) { //modifica el carrito original con *
-	c.Items = append(c.Items, item)
-}
-
-func (c *Carrito) Total() float64 {
-	total := 0.0
-	for _, item := range c.Items {
-		total += item.PrecioPorItem()
-	}
-	return total
-}
-
+// en vez de generar un resumen podriamos testear el total de la cantidad de items comprados
