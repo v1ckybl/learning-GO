@@ -12,9 +12,17 @@ type Electronico struct {
 
 func NewElectronico(nombre string, precio float64, stock int, marca string, garantia int) *Electronico {
 	return &Electronico{
-		ProductoBase:  nuevoProductoBase(nombre, precio, stock),
-		marca:    marca,
-		garantia: garantia,
+		ProductoBase: nuevoProductoBase(nombre, precio, stock),
+		marca:        marca,
+		garantia:     garantia,
+	}
+}
+
+func NewElectronicoConGenerador(nombre string, precio float64, stock int, marca string, garantia int, g *GenerarID) *Electronico {
+	return &Electronico{
+		ProductoBase: nuevoProductoBaseConGenerador(nombre, precio, stock, g),
+		marca:        marca,
+		garantia:     garantia,
 	}
 }
 
