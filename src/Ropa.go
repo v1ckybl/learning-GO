@@ -12,7 +12,7 @@ type Ropa struct {
 
 func NewRopa(nombre string, precio float64, stock int, talle, material string) *Ropa {
 	return &Ropa{
-		ProductoBase: nuevoProductoBase(nombre, precio, stock),
+		ProductoBase: nuevoProductoBase(nombre, precio, stock), //Llama a `nuevoProductoBase()` que internamente genera el ID automático y devuelve un `ProductoBase` listo
 		talle:        talle,
 		material:     material,
 	}
