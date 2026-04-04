@@ -12,7 +12,7 @@ jobs:
 
     defaults:
       run:
-        working-directory: ./src
+        working-directory: ./Go-Todo
 
     steps:
       - name: Checkout code
