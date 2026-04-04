@@ -4,7 +4,9 @@
     <option name="autoReloadType" value="ALL" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="89b2884e-921b-41a7-a5b0-b06e202f8944" name="Changes" comment="" />
+    <list default="true" id="89b2884e-921b-41a7-a5b0-b06e202f8944" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -38,6 +40,8 @@
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
     "Go Test.TestIDsUnicosPorProducto in learning-go/Test.executor": "Debug",
+    "Go Test.TestIDsUnicosPorProducto in learning-go/src.executor": "Run",
+    "Go Test.go test learning-go/src.executor": "Debug",
     "ModuleVcsDetector.initialDetectionPerformed": "true",
     "RunOnceActivity.GoLinterPluginOnboardingV2": "true",
     "RunOnceActivity.GoLinterPluginStorageMigration": "true",
@@ -58,7 +62,7 @@
     "to.speed.mode.migration.done": "true"
   }
 }]]></component>
-  <component name="RunManager">
+  <component name="RunManager" selected="Go Test.TestIDsUnicosPorProducto in learning-go/src">
     <configuration name="TestIDsUnicosPorProducto in learning-go/Test" type="GoTestRunConfiguration" factoryName="Go Test" temporary="true" nameIsGenerated="true">
       <module name="learning-GO" />
       <working_directory value="$PROJECT_DIR$/Go-Todo/Test" />
@@ -71,8 +75,33 @@
       <pattern value="^\QTestIDsUnicosPorProducto\E$" />
       <method v="2" />
     </configuration>
+    <configuration name="TestIDsUnicosPorProducto in learning-go/src" type="GoTestRunConfiguration" factoryName="Go Test" temporary="true" nameIsGenerated="true">
+      <module name="learning-GO" />
+      <working_directory value="$PROJECT_DIR$/Go-Todo/src" />
+      <root_directory value="$PROJECT_DIR$/Go-Todo" />
+      <kind value="PACKAGE" />
+      <package value="learning-go/src" />
+      <directory value="$PROJECT_DIR$" />
+      <filePath value="$PROJECT_DIR$" />
+      <framework value="gotest" />
+      <pattern value="^\QTestIDsUnicosPorProducto\E$" />
+      <method v="2" />
+    </configuration>
+    <configuration name="go test learning-go/src" type="GoTestRunConfiguration" factoryName="Go Test" temporary="true" nameIsGenerated="true">
+      <module name="learning-GO" />
+      <working_directory value="$PROJECT_DIR$/Go-Todo/src" />
+      <root_directory value="$PROJECT_DIR$/Go-Todo" />
+      <kind value="PACKAGE" />
+      <package value="learning-go/src" />
+      <directory value="$PROJECT_DIR$" />
+      <filePath value="$PROJECT_DIR$" />
+      <framework value="gotest" />
+      <method v="2" />
+    </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Go Test.TestIDsUnicosPorProducto in learning-go/src" />
+        <item itemvalue="Go Test.go test learning-go/src" />
         <item itemvalue="Go Test.TestIDsUnicosPorProducto in learning-go/Test" />
       </list>
     </recent_temporary>

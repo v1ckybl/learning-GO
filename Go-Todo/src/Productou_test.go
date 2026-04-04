@@ -17,6 +17,6 @@ func TestIDsUnicosPorProducto(t *testing.T) {
 	libro := NewLibroConGenerador("Go in Action", 50.00, 8, "Kennedy", "Programación", g)
 
 	if laptop.GetID() == remera.GetID() || remera.GetID() == libro.GetID() {
-		t.Error("cada producto debe tener un ID único")
+		t.Error("cada producto debe tener un ID unico")
 	}
 }
