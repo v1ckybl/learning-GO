@@ -24,7 +24,7 @@ func (c *Carrito) AgregarProducto(p IProducto, cantidad int) error {
 	if !p.EstaDisponible() {
 		return fmt.Errorf("producto '%s' sin stock", p.GetNombre())
 	}
-	err := p.DescontarStock(cantidad)
+	err := p.Reservar(cantidad)
 	if err != nil {
 		return err
 	}
@@ -42,7 +42,12 @@ func (c *Carrito) AgregarProducto(p IProducto, cantidad int) error {
 
 // MÉTODO: RemoverProducto — recibe el ID único del producto
 func (c *Carrito) RemoverProducto(id uint64) {
-	delete(c.items, id)
+	item, existe := c.items[id]
+	if existe {
+		item.producto.LiberarReserva(item.cantidad)
+		delete(c.items, id)
+	}
+
 }
 
 // MÉTODO: AplicarDescuento
@@ -62,6 +67,17 @@ func (c *Carrito) Total() float64 {
 // MÉTODO: CantidadItems
 func (c *Carrito) CantidadItems() int {
 	return len(c.items)
+}
+
+func (c *Carrito) ConfirmarCompra() error {
+	for _, item := range c.items {
+		err := item.producto.ConfirmarCompra(item.cantidad)
+		if err != nil {
+			return fmt.Errorf("error confirmando '%s': %w", item.producto.GetNombre(), err)
+		}
+	}
+	c.items = make(map[uint64]ItemCompra) // vacía el carrito
+	return nil
 }
 
 // MÉTODO: Resumen — genera texto descriptivo del carrito

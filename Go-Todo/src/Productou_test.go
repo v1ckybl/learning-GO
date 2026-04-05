@@ -20,3 +20,8 @@ func TestIDsUnicosPorProducto(t *testing.T) {
 		t.Error("cada producto debe tener un ID unico")
 	}
 }
+
+func TestStock(t *testing.T) {
+	g:= nuevoGen()
+	p:= NewLibro("Las cronicas de narnia", 1000.05, 7, "C.S. Lewis", "Fantasía")
+	if 

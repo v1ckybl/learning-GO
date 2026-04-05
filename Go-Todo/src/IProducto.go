@@ -6,5 +6,7 @@ type IProducto interface { //contrato que todo producto debe cumplir
 	GetPrecio() float64
 	GetStock() int
 	EstaDisponible() bool
-	DescontarStock(cantidad int) error
+	Reservar(cantidad int) error
+	LiberarReserva(cantidad int)
+	ConfirmarCompra(cantidad int) error
 }
