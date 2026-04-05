@@ -12,10 +12,10 @@ func TestAgregarProductoReserva(t *testing.T) {
 
 	// stock real intacto, solo reservado
 	if laptop.GetStock() != 5 {
-		t.Errorf("stock real no debería cambiar, got %d", laptop.GetStock())
+		t.Errorf("stock real no deberia cambiar, got %d", laptop.GetStock())
 	}
 	if laptop.GetStockDisponible() != 3 {
-		t.Errorf("stock disponible debería ser 3, got %d", laptop.GetStockDisponible())
+		t.Errorf("stock disponible deberia ser 3, got %d", laptop.GetStockDisponible())
 	}
 }
 
@@ -28,10 +28,10 @@ func TestRemoverProductoLiberaReserva(t *testing.T) {
 
 	// al sacar del carrito, el stock vuelve a estar disponible
 	if libro.GetStockDisponible() != 3 {
-		t.Errorf("stock disponible debería volver a 3, got %d", libro.GetStockDisponible())
+		t.Errorf("stock disponible deberia volver a 3, got %d", libro.GetStockDisponible())
 	}
 	if carrito.CantidadItems() != 0 {
-		t.Errorf("carrito debería estar vacío, got %d", carrito.CantidadItems())
+		t.Errorf("carrito deberia estar vacío, got %d", carrito.CantidadItems())
 	}
 }
 
@@ -46,9 +46,42 @@ func TestConfirmarCompraYVaciaCarrito(t *testing.T) {
 		t.Fatalf("no debería haber error al confirmar: %v", err)
 	}
 	if carrito.CantidadItems() != 0 {
-		t.Error("carrito debería estar vacío después de confirmar")
+		t.Error("carrito debería estar vacío despues de confirmar")
 	}
 	if remera.GetStock() != 3 {
 		t.Errorf("stock real debería ser 3, got %d", remera.GetStock())
+	}
+}
+
+func TestTotalSinDescuento(t *testing.T) {
+	carrito := NewCompra("T-004")
+	libro := NewLibro("SICP", 40.00, 10, "Abelson", "CS")
+
+	_ = carrito.AgregarProducto(libro, 2)
+
+	if carrito.Total() != 80.00 {
+		t.Errorf("total incorrecto: got %.2f, want 80.00", carrito.Total())
+	}
+}
+
+func TestTotalConDescuento(t *testing.T) {
+	carrito := NewCompra("T-005")
+	remera := NewRopa("Remera", 100.00, 10, "M", "Lino")
+
+	_ = carrito.AgregarProducto(remera, 1)
+	carrito.AplicarDescuento(20)
+
+	if carrito.Total() != 80.00 {
+		t.Errorf("total con descuento incorrecto: got %.2f, want 80.00", carrito.Total())
+	}
+}
+
+func TestAgregarSinStockDisponible(t *testing.T) {
+	carrito := NewCompra("T-006")
+	p := NewElectronico("Auriculares", 60.00, 0, "Sony", 6)
+
+	err := carrito.AgregarProducto(p, 1)
+	if err == nil {
+		t.Error("debería retornar error: producto sin stock")
 	}
 }
