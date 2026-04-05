@@ -17,8 +17,7 @@ func NewCompra(id string) *Carrito {
 	}
 }
 
-// MÉTODO: AgregarProducto
-// Go no tiene sobrecarga, pero podríamos agregar AgregarProductoConNota, etc.
+// Go no tiene sobrecarga, pero podríamos agregar AgregarProductoConNota
 func (c *Carrito) AgregarProducto(p IProducto, cantidad int) error {
 	if !p.EstaDisponible() {
 		return fmt.Errorf("producto '%s' sin stock", p.GetNombre())
@@ -39,7 +38,7 @@ func (c *Carrito) AgregarProducto(p IProducto, cantidad int) error {
 	return nil
 }
 
-// MÉTODO: RemoverProducto — recibe el ID único del producto
+// RemoverProducto, recibe el ID único del producto
 func (c *Carrito) RemoverProducto(id uint64) {
 	item, existe := c.items[id]
 	if existe {
@@ -49,12 +48,11 @@ func (c *Carrito) RemoverProducto(id uint64) {
 
 }
 
-// MÉTODO: AplicarDescuento
 func (c *Carrito) AplicarDescuento(porcentaje float64) {
 	c.descuento = porcentaje
 }
 
-// MÉTODO: Total — calcula el total con descuento aplicado
+// calcula el total con descuento aplicado
 func (c *Carrito) Total() float64 {
 	subtotal := 0.0
 	for _, item := range c.items {
@@ -63,7 +61,6 @@ func (c *Carrito) Total() float64 {
 	return subtotal * (1 - c.descuento/100)
 }
 
-// MÉTODO: CantidadItems
 func (c *Carrito) CantidadItems() int {
 	return len(c.items)
 }
@@ -78,5 +75,3 @@ func (c *Carrito) ConfirmarCompra() error {
 	c.items = make(map[uint64]ItemCompra) // vacía el carrito
 	return nil
 }
-
-// en vez de generar un resumen podriamos testear el total de la cantidad de items comprados
