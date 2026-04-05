@@ -58,10 +58,22 @@ func TestConfirmarComprar(t *testing.T) {
 	}
 }
 
-func TestReservaInsuficienteRetornaError(t *testing.T) {
+func TestStockInsuficiente(t *testing.T) {
 	p := NewElectronico("TV", 500.00, 1, "Samsung", 12)
 	err := p.Reservar(5)
 	if err == nil {
 		t.Error("debería retornar error por stock insuficiente")
+	}
+}
+
+func TestNoDeberiaEstarDisponible(t *testing.T) {
+	p := NewLibro("Test", 10.00, 1, "Autor", "Cat")
+
+	if !p.EstaDisponible() {
+		t.Error("debería estar disponible antes de reservar")
+	}
+	_ = p.Reservar(1)
+	if p.EstaDisponible() {
+		t.Error("no debería estar disponible con todo el stock reservado")
 	}
 }
