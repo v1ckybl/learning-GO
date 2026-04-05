@@ -2,7 +2,6 @@ package main
 
 import (
 	"fmt"
-	"strings"
 )
 
 type Carrito struct {
@@ -78,20 +77,6 @@ func (c *Carrito) ConfirmarCompra() error {
 	}
 	c.items = make(map[uint64]ItemCompra) // vacía el carrito
 	return nil
-}
-
-// MÉTODO: Resumen — genera texto descriptivo del carrito
-func (c *Carrito) Resumen() string {
-	var sb strings.Builder
-	sb.WriteString(fmt.Sprintf("🛒 Carrito [%s] — %d producto(s)\n", c.id, len(c.items)))
-	sb.WriteString(strings.Repeat("─", 55) + "\n")
-	for _, item := range c.items {
-		sb.WriteString(fmt.Sprintf("  %-30s x%d  $%.2f\n",
-			item.producto.GetNombre(), item.cantidad, item.subtotal))
-	}
-	sb.WriteString(strings.Repeat("─", 55) + "\n")
-	sb.WriteString(fmt.Sprintf("  TOTAL: $%.2f\n", c.Total()))
-	return sb.String()
 }
 
 // en vez de generar un resumen podriamos testear el total de la cantidad de items comprados

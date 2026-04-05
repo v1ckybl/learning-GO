@@ -21,6 +21,23 @@ func TestIDsUnicosPorProducto(t *testing.T) {
 	}
 }
 
+func TestIDArrancanDesdeUno(t *testing.T) {
+	g := nuevoGen()
+	p := NewLibroConGenerador("Test", 10.00, 1, "Autor", "Cat", g)
+	if p.GetID() != 1 {
+		t.Errorf("primer producto debería tener ID 1, got %d", p.GetID())
+	}
+}
+
+func TestIDsCrecientes(t *testing.T) {
+	g := nuevoGen()
+	a := NewRopaConGenerador("A", 10.00, 1, "S", "Tela", g)
+	b := NewRopaConGenerador("B", 10.00, 1, "M", "Tela", g)
+	if b.GetID() <= a.GetID() {
+		t.Errorf("ID de b (%d) debería ser mayor que a (%d)", b.GetID(), a.GetID())
+	}
+}
+
 func TestStock(t *testing.T) {
 	p := NewLibro("Las cronicas de narnia", 1000.05, 7, "C.S. Lewis", "Fantasía")
 	_ = p.Reservar(2)
