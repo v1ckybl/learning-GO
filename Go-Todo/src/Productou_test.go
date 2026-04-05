@@ -94,3 +94,20 @@ func TestNoDeberiaEstarDisponible(t *testing.T) {
 		t.Error("no debería estar disponible con todo el stock reservado")
 	}
 }
+
+func TestDescripciones(t *testing.T) {
+	g := nuevoGen()
+	e := NewElectronicoConGenerador("TV", 500.00, 1, "Samsung", 12, g)
+	r := NewRopaConGenerador("Camisa", 40.00, 5, "L", "Lino", g)
+	l := NewLibroConGenerador("Dune", 35.00, 3, "Herbert", "Ficción", g)
+
+	if e.Descripcion() == "" {
+		t.Error("Descripcion de Electronico no debería estar vacía")
+	}
+	if r.Descripcion() == "" {
+		t.Error("Descripcion de Ropa no debería estar vacía")
+	}
+	if l.Descripcion() == "" {
+		t.Error("Descripcion de Libro no debería estar vacía")
+	}
+}

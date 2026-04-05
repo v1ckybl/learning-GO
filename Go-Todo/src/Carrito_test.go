@@ -86,6 +86,31 @@ func TestAgregarSinStockDisponible(t *testing.T) {
 	}
 }
 
+func TestAgregarMismoProductoDosVeces(t *testing.T) {
+	carrito := NewCompra("T-008")
+	libro := NewLibro("Harry Potter", 35.00, 5, "J.K. Rowling", "Fantasia")
+
+	_ = carrito.AgregarProducto(libro, 1)
+	_ = carrito.AgregarProducto(libro, 1)
+
+	if carrito.CantidadItems() != 1 {
+		t.Errorf("debería haber 1 item acumulado, got %d", carrito.CantidadItems())
+	}
+}
+
+func TestConfirmarCompraConErrorRetorna(t *testing.T) {
+	carrito := NewCompra("T-009")
+	p := NewRopa("Short", 25.00, 1, "L", "Algodón")
+
+	_ = carrito.AgregarProducto(p, 1)
+	p.stock = 0 // forzamos inconsistencia
+
+	err := carrito.ConfirmarCompra()
+	if err == nil {
+		t.Error("debería retornar error al confirmar con stock insuficiente")
+	}
+}
+
 func TestInterfazProducto(t *testing.T) {
 	g := nuevoGen()
 	productos := []IProducto{
