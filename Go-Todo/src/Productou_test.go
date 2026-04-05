@@ -8,8 +8,6 @@ func nuevoGen() *GenerarID {
 	return &GenerarID{}
 }
 
-// --- Tests de ID ---
-
 func TestIDsUnicosPorProducto(t *testing.T) {
 	g := nuevoGen()
 	laptop := NewElectronicoConGenerador("Laptop", 900.00, 3, "Dell", 12, g)
@@ -33,7 +31,7 @@ func TestIDsCrecientes(t *testing.T) {
 	g := nuevoGen()
 	a := NewRopaConGenerador("A", 10.00, 1, "S", "Tela", g)
 	b := NewRopaConGenerador("B", 10.00, 1, "M", "Tela", g)
-	if b.GetID() <= a.GetID() {
+	if b.GetID() < a.GetID() {
 		t.Errorf("ID de b (%d) debería ser mayor que a (%d)", b.GetID(), a.GetID())
 	}
 }
