@@ -85,3 +85,24 @@ func TestAgregarSinStockDisponible(t *testing.T) {
 		t.Error("debería retornar error: producto sin stock")
 	}
 }
+
+func TestInterfazProducto(t *testing.T) {
+	g := nuevoGen()
+	productos := []IProducto{
+		NewElectronicoConGenerador("Monitor", 300.00, 2, "LG", 18, g),
+		NewRopaConGenerador("Jean", 55.00, 7, "38", "Denim", g),
+		NewLibroConGenerador("The Pragmatic Programmer", 42.00, 4, "Hunt & Thomas", "Dev", g),
+	}
+
+	carrito := NewCompra("T-007")
+	for _, p := range productos {
+		err := carrito.AgregarProducto(p, 1)
+		if err != nil {
+			t.Errorf("error inesperado agregando %s: %v", p.GetNombre(), err)
+		}
+	}
+
+	if carrito.CantidadItems() != 3 {
+		t.Errorf("esperaba 3 items, got %d", carrito.CantidadItems())
+	}
+}
