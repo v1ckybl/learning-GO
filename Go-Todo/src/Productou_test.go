@@ -43,3 +43,25 @@ func TestLiberarStock(t *testing.T) {
 		t.Errorf("stock disponible debería ser 9 después de liberar reserva, got %d", p.GetStockDisponible())
 	}
 }
+
+func TestConfirmarComprar(t *testing.T) {
+	p := NewElectronico("celu", 700.04, 5, "iphone", 12)
+	_ = p.Reservar(2)
+	_ = p.ConfirmarCompra(2)
+
+	if p.GetStock() != 3 {
+		t.Errorf("stock real debería ser 3 después de confirmar compra, got %d", p.GetStock())
+	}
+
+	if p.GetStockDisponible() != 3 {
+		t.Errorf("stock disponible debería ser 3 después de confirmar compra, got %d", p.GetStockDisponible())
+	}
+}
+
+func TestReservaInsuficienteRetornaError(t *testing.T) {
+	p := NewElectronico("TV", 500.00, 1, "Samsung", 12)
+	err := p.Reservar(5)
+	if err == nil {
+		t.Error("debería retornar error por stock insuficiente")
+	}
+}
